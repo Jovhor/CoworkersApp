@@ -10,11 +10,12 @@ namespace CoworkersApp
     class Program
     {
 
-
-        static void Main(string[] args)
+        static void RightHere()
         {
-            using (StreamWriter dataBase = new StreamWriter ("DataBase.csv", true, Encoding.Unicode))
+            using (StreamWriter dataBase = new StreamWriter("DataBase.csv", true, Encoding.Unicode))
             {
+                Console.Write("Начнём?");
+
                 char key = 'д';
 
                 do
@@ -36,8 +37,12 @@ namespace CoworkersApp
                 } while (char.ToLower(key) == 'д');
 
             }
+        }
 
-            using (StreamReader dataBaseRead = new StreamReader ("Database.csv", Encoding.Unicode))
+
+        static void RightNow()
+        {
+            using (StreamReader dataBaseRead = new StreamReader("Database.csv", Encoding.Unicode))
             {
                 string line;
                 Console.WriteLine($"{"Номер сотрудника",15}{"Время",8} {"Ф.И.О. сотрудника"}");
@@ -48,6 +53,32 @@ namespace CoworkersApp
                     Console.WriteLine($"{data[0],15}{data[1],8} {data[2]}");
                 }
             }
+        }
+
+        static void Main(string[] args)
+        {
+            Console.WriteLine("Приветствую. \nСегодня я попытааюсь впарить Вам свою домашку. " +
+                "\nДля начала давайте определимся: \n Вы хотите вписать кого-то (1) или про кого-то узнать? (2)");
+
+            while (true)
+            {
+                string choise = Console.ReadLine();
+
+                switch (choise)
+                {
+                    case "1":
+                        RightHere();
+                        break;
+                    case "2":
+                        RightNow();
+                        break;
+                    default:
+                        Console.WriteLine("Введите 1 или 2. Я на большее не запрограммирован.");
+                        break;
+                }
+            }
+
+            Console.ReadKey();
         }
     }
 }
